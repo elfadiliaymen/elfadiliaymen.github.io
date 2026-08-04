@@ -1,0 +1,139 @@
+# PROMPT — Portfolio Interactif "Game-Like" Style Apple (Glassmorphism)
+
+## 🎯 Objectif
+Créer un portfolio web **prêt à l'emploi (out of the box)**, ultra-organisé, moderne, avec une direction artistique **glassmorphism inspirée d'Apple** (comme visionOS / macOS Big Sur), mais avec une **sensation de navigation "jeu vidéo"** : transitions fluides façon menu de jeu, feedback interactif, effets de profondeur, micro-animations gratifiantes à chaque interaction.
+
+Développeur à présenter : **Aymen EL FADILI**, Développeur Web Junior (Java / Spring Boot / React).
+
+---
+
+## 🎨 Direction artistique
+
+- **Style visuel** : Glassmorphism premium — panneaux en verre dépoli (`backdrop-filter: blur()`), bordures fines semi-transparentes, ombres douces multi-couches, reflets subtils.
+- **Ambiance** : Sombre par défaut (dark mode), avec un fond animé (gradient mesh ou particules légères) qui réagit au mouvement de la souris — comme un arrière-plan de menu de jeu.
+- **Palette** :
+  - Fond : noir profond / bleu nuit (#0A0A0F → #12121A)
+  - Accent primaire : bleu électrique / cyan (#3B82F6 → #60A5FA), en écho au pull bleu de la photo de profil
+  - Accent secondaire : violet doux (#8B5CF6) pour les hovers/CTA
+  - Verre : blanc à 6–10% d'opacité + blur 20px
+- **Typographie** : Police style SF Pro / Inter, hiérarchie claire (Hero en 64–80px, sections en 32–40px), espacement généreux.
+- **Grille** : Layout basé sur une grille 12 colonnes, cartes en `border-radius: 24px`, beaucoup d'espace négatif ("airy" comme les pages produit Apple).
+
+---
+
+## 🕹️ Expérience "Game-Like" (mécaniques à intégrer)
+
+1. **Écran de chargement** type "boot screen" de jeu : logo qui se dessine (SVG path animation) + barre de progression stylisée, transition vers le hero en fade + scale.
+2. **Navigation comme un HUD** : menu flottant en verre, fixe en haut, avec indicateur de section active façon "quête active".
+3. **Scroll-driven storytelling** : chaque section se révèle avec un effet "unlock" (fade + translateY + léger scale, easing type `cubic-bezier(0.16, 1, 0.3, 1)`).
+4. **Curseur personnalisé** : un curseur circulaire qui grossit et devient magnétique sur les éléments cliquables (comme un "reticle" de jeu).
+5. **Cartes de projet en 3D tilt** (effet parallax au survol de la souris, `perspective` + `rotateX/rotateY`), avec une lueur (glow) qui suit le curseur.
+6. **Barres de compétences façon "niveaux de personnage"** (progress bars animées avec effet de remplissage type XP bar) au lieu de simples logos.
+7. **Sons discrets optionnels** (hover/click) désactivables — clin d'œil gaming, à garder subtil et non intrusif.
+8. **Easter egg** : un petit élément caché/interactif (ex: Konami code ou clic répété sur le logo) qui déclenche une micro-animation surprise.
+
+---
+
+## 🧩 Composants Figma à décrire / concevoir
+
+> Structurer la maquette Figma en Design System avant le développement, avec ces composants réutilisables :
+
+### 1. `Navbar/Glass`
+- Variants : `default`, `scrolled` (plus opaque), `mobile-open`
+- Auto-layout horizontal, blur 24px, padding 16/32, logo + liens + CTA "Me contacter"
+
+### 2. `Button/Primary` & `Button/Ghost`
+- États : `default`, `hover` (glow + scale 1.03), `pressed` (scale 0.97), `focus`
+- Coins arrondis 16px, dégradé bleu→violet sur le primary
+
+### 3. `Card/Project` (glass card)
+- Zones : image/preview, badge stack technique, titre, description courte, liens (GitHub / Démo)
+- États : `default`, `hover` (tilt 3D + glow + élévation shadow)
+- Variante `featured` (plus grande, pour HealthCare et FleetFlow)
+
+### 4. `Card/Skill` (barre de progression "XP")
+- Icône + nom compétence + barre de niveau animée + % ou label (Débutant/Intermédiaire/Avancé)
+- Groupées par catégorie : Langages, Frontend, Backend, Bases de données, DevOps, Outils, Tests
+
+### 5. `Badge/Tech`
+- Petite pastille glass avec icône + nom techno (Java, Spring Boot, React, MySQL, Docker, etc.)
+
+### 6. `Timeline/Formation`
+- Composant vertical avec points connectés (comme une "progression de carte"), pour ENAA et ISTA Oued Zem
+
+### 7. `Section/Hero`
+- Photo de profil dans un cadre glass circulaire avec halo animé
+- Titre + sous-titre + CTA double (Voir projets / Télécharger CV)
+- Fond animé (particules ou gradient mesh en mouvement lent)
+
+### 8. `Modal/ProjectDetail`
+- Overlay blur + panneau glass centré, ouverture avec animation "zoom-in depuis la carte" (shared element transition)
+- Contenu : stack complète, fonctionnalités, captures, liens
+
+### 9. `Footer/Contact`
+- Grand bloc glass avec liens (Email, LinkedIn, GitHub, téléphone), effet aimant sur les icônes sociales
+
+### 10. `Cursor/Custom` & `Loader/Boot`
+- Composants d'interaction globale décrits ci-dessus
+
+---
+
+## 🗂️ Structure des sections (contenu réel à intégrer)
+
+1. **Hero**
+   - Nom : Aymen EL FADILI
+   - Titre : Développeur Web Junior — Full Stack Java / Spring Boot / React
+   - Localisation : Oued Zem, Maroc (mobilité nationale)
+   - Statut : Disponible
+   - CTA : Voir mes projets / Me contacter / Télécharger le CV
+
+2. **À propos**
+   - Texte de présentation (voir profil fourni)
+   - Langues : Arabe (natif), Français (moyen), Anglais (moyen)
+
+3. **Compétences** (barres "XP" groupées)
+   - Langages : Java, JavaScript
+   - Frontend : React, HTML5, CSS3
+   - Backend : Spring Boot, Spring Data JPA, Spring Security, Spring MVC
+   - Bases de données : SQL, MySQL
+   - DevOps : Docker, Docker Compose
+   - Outils : Git, Postman, Swagger, Trello
+   - Tests : JUnit 5, Mockito
+   - Méthodologies : Agile/Scrum, Gestion de projet, Travail collaboratif
+
+4. **Projets** (cartes featured + modal détail)
+   - **HealthCare** — Système de gestion médicale (API REST) : Spring Boot, Spring Data JPA, MySQL, Flyway, MapStruct, JUnit, Docker, Swagger
+   - **FleetFlow** — Système de gestion logistique & automatisation : Spring Boot, MySQL, Flyway, Docker Compose, JUnit 5
+
+5. **Formation** (timeline)
+   - 2025–2026 : Développeur Web Junior — ENAA (École Numérique Ahmed El Hansali)
+   - 2023–2025 : Technicien Spécialisé en Développement Digital Full-Stack — ISTA Oued Zem, OFPPT
+
+6. **Contact**
+   - Téléphone : +212 625514303
+   - Email : aymenelfadili0@gmail.com
+   - LinkedIn / GitHub (liens fournis)
+
+---
+
+## ⚙️ Stack technique recommandée
+
+- **Framework** : React (Vite) ou Next.js
+- **Styling** : Tailwind CSS + variables CSS pour le glassmorphism
+- **Animations** : Framer Motion (transitions, scroll-reveal, shared layout animations pour les modals) + GSAP (pour le boot screen et effets scroll avancés)
+- **3D/Parallax** : `react-parallax-tilt` ou implémentation custom avec `perspective`
+- **Icônes** : Lucide React ou Simple Icons pour les technos
+- **Responsive** : mobile-first, navbar transformée en menu glass plein écran sur mobile
+
+---
+
+## ✅ Contraintes de qualité
+
+- Accessibilité : contrastes suffisants malgré le style glass sombre, focus visibles, navigation clavier complète
+- Performance : lazy-load des images, animations désactivables (`prefers-reduced-motion`)
+- Le style "jeu" doit rester **élégant et professionnel** — subtilité avant tout, jamais gadget ou distrayant pour un recruteur
+- Design 100% cohérent avec l'identité Apple : simplicité, espace, lumière, mouvement fluide
+
+---
+
+*Ce prompt peut être copié tel quel dans un outil de génération (Figma AI, v0, Claude, etc.) pour produire le portfolio complet d'Aymen EL FADILI.*
